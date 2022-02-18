@@ -1,5 +1,5 @@
 """Module where all interfaces, events and exceptions live."""
-#pylint: disable=line-too-long
+# pylint: disable=line-too-long
 
 from zope.publisher.interfaces.browser import IDefaultBrowserLayer
 from zope.interface import provider

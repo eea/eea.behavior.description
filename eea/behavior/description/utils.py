@@ -1,6 +1,6 @@
 """ Utilities
 """
-#pylint: disable=line-too-long
+# pylint: disable=line-too-long
 
 
 def truncate(text, length=300, orphans=10, suffix=".", end=".", cut=True):
@@ -41,7 +41,8 @@ def getAllSlateBlocks(blocks, slate_blocks):
     for block in blocks.values():
         if block.get("@type", "") == "slate":
             slate_blocks.append(block)
-        sub_blocks = block.get("data", {}).get("blocks", {}) or block.get("blocks", {})
+        sub_blocks = block.get("data", {}).get(
+            "blocks", {}) or block.get("blocks", {})
         if sub_blocks:
             getAllSlateBlocks(sub_blocks, slate_blocks)
     return slate_blocks
