@@ -1,6 +1,6 @@
 """ Utilities
 """
-# pylint: disable=line-too-long
+#pylint: disable=line-too-long
 
 
 def truncate(text, length=300, orphans=10, suffix=".", end=".", cut=True):
