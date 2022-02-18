@@ -25,15 +25,14 @@ class IDescriptionMetadata(model.Schema):
         "metadata",
         label=_("Metadata"),
         fields=[
-            "description_metadata_blocks",
+            "description_blocks",
         ],
     )
 
-    description_metadata_blocks = TextLine(
+    description_blocks = TextLine(
         title=_("Description"),
         description=_(
-            "This property extracts description metadata from Volto blocks in current page."
+            "This property extracts description as metadata from Volto blocks in current page."
         ),
         required=False,
-        default="",
     )
