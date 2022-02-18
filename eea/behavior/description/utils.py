@@ -1,8 +1,14 @@
 """ Utilities
 """
+# pylint: disable=line-too-long
 
 
 def truncate(text, length=300, orphans=10, suffix=".", end=".", cut=True):
+    """
+    Truncate text by the number of characters without cutting words at
+    the end.
+
+    """
 
     text = " ".join(word for word in text.split() if word)
 

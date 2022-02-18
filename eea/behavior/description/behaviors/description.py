@@ -1,11 +1,13 @@
 """ Custom behavior for Indicator
 
 """
-from eea.behavior.description.interfaces import IDescriptionMetadata
+# pylint: disable=line-too-long
 from plone.dexterity.interfaces import IDexterityContent
 from zope.component import adapter
 from zope.interface import implementer
+
 from eea.behavior.description.utils import truncate, getAllSlateBlocks
+from eea.behavior.description.interfaces import IDescriptionMetadata
 
 
 @implementer(IDescriptionMetadata)
