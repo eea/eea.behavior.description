@@ -17,7 +17,7 @@ class Description(object):
 
     def __init__(self, context):
         self.__dict__["context"] = context
-        self.__dict__["readOnly"] = ["description_blocks"]
+        self.__dict__["readOnly"] = ["description"]
 
     def __getattr__(self, name):  # pylint: disable=R1710
         if name not in IDescriptionMetadata:
@@ -38,7 +38,7 @@ class Description(object):
             setattr(self.context, name, value)
 
     @property
-    def description_blocks(self):
+    def description(self):
         """Description metadata from Volto Blocks"""
         res = ""
         blocks = getattr(self.context, "blocks", None) or {}
@@ -50,3 +50,8 @@ class Description(object):
             if truncated_desc:
                 res += truncated_desc + "\n"
         return res
+
+    def Description(self):
+        """ Description
+        """
+        return self.description

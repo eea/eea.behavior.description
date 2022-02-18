@@ -20,22 +20,11 @@ class IEeaBehaviorDescriptionLayer(IDefaultBrowserLayer):
 class IDescriptionMetadata(model.Schema):
     """Description metadata schema provider"""
 
-    #
-    # Metadata
-    #
-    model.fieldset(
-        "metadata",
-        label=_("Metadata"),
-        fields=[
-            "description_blocks",
-        ],
-    )
-
-    description_blocks = Text(
-        title=_("Description"),
+    description = Text(
+        title=_("Description (read-only)"),
         description=_(
-            "This property extracts description as metadata"
-            "from Volto blocks in current page."
+            "This property is read-only and it is automatically"
+            "extracted from the first paragraphs of this document."
         ),
         required=False,
     )
