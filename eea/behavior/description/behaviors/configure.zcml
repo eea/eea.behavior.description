@@ -1,0 +1,18 @@
+<configure
+  xmlns="http://namespaces.zope.org/zope"
+  xmlns:i18n="http://namespaces.zope.org/i18n"
+  xmlns:plone="http://namespaces.plone.org/plone"
+  xmlns:zcml="http://namespaces.zope.org/zcml"
+  i18n_domain="eea">
+
+  <include package="plone.behavior" file="meta.zcml"/>
+
+  <plone:behavior
+    name="eea.behavior.description.metadata"
+    title="Description Behavior"
+    description="Extract description metadata from Volto Blocks"
+    factory=".description.Description"
+    provides="eea.behavior.description.interfaces.IDescriptionMetadata"
+    />
+
+</configure>

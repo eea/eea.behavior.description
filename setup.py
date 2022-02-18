@@ -39,9 +39,12 @@ setup(
     namespace_packages=['eea', 'eea.behavior'],
     include_package_data=True,
     zip_safe=False,
-        python_requires="==2.7",
         install_requires=[
         'setuptools',
+        'plone.app.dexterity',
+        'eea.api.layout',
+        'eea.schema.slate',
+        'eea.dexterity.themes',
         # -*- Extra requirements: -*-
     ],
     extras_require={
