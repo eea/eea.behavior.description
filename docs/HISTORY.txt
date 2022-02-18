@@ -5,7 +5,7 @@ Changelog
 ---------------------------
 * Change: Implement Description behaviour [nileshgulia1]
 
-1.0-dev0 - (unreleased)
+1.0 - (2022-02-18)
 -----------------------
 
 * Initial release.
