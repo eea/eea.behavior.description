@@ -7,14 +7,15 @@ from zope.component import adapter
 from zope.interface import implementer
 
 
-def getAllBlocks(blocks, flat_blocks):
+def getAllSlateBlocks(blocks, slate_blocks):
     """Get a flat list from a tree of blocks"""
     for block in blocks.values():
+        if block.get("@type", "") == "slate":
+            slate_blocks.append(block)
         sub_blocks = block.get("data", {}).get("blocks", {}) or block.get("blocks", {})
-        flat_blocks.append(block)
         if sub_blocks:
-            getAllBlocks(sub_blocks, flat_blocks)
-    return flat_blocks
+            getAllSlateBlocks(sub_blocks, slate_blocks)
+    return slate_blocks
 
 
 @implementer(IDescriptionMetadata)
@@ -47,12 +48,10 @@ class Description(object):
     @property
     def description_metadata_blocks(self):
         """Description metadata from Volto Blocks"""
-        res = []
+        res = ""
         blocks = getattr(self.context, "blocks", None) or {}
-        for block in getAllBlocks(blocks, []):
-            if block.get("@type", "") != "slate":
-                continue
-
+        for block in getAllSlateBlocks(blocks, []):
             description = block.get("plaintext", "") or ""
-            res.append(description)
+            if description:
+                res += description
         return res
