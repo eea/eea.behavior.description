@@ -42,14 +42,3 @@ def truncate(text, length=300, orphans=10, suffix=".", end=".", cut=True, **kwar
     if cut:
         return " ".join(text[: length + 1].split()[:-1]) + suffix
     return ""
-
-
-def getAllSlateBlocks(blocks, slate_blocks):
-    """Get a flat list of slate blocks from a tree of blocks"""
-    for block in blocks.values():
-        if block.get("@type", "") == "slate":
-            slate_blocks.append(block)
-        sub_blocks = block.get("data", {}).get("blocks", {}) or block.get("blocks", {})
-        if sub_blocks:
-            getAllSlateBlocks(sub_blocks, slate_blocks)
-    return slate_blocks

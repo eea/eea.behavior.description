@@ -5,7 +5,18 @@ from eea.behavior.description.interfaces import IDescriptionMetadata
 from plone.dexterity.interfaces import IDexterityContent
 from zope.component import adapter
 from zope.interface import implementer
-from eea.behavior.description.utils import truncate, getAllSlateBlocks
+from eea.behavior.description.utils import truncate
+
+
+def getAllSlateBlocks(blocks, slate_blocks):
+    """Get a flat list of slate blocks from a tree of blocks"""
+    for block in blocks.values():
+        if block.get("@type", "") == "slate":
+            slate_blocks.append(block)
+        sub_blocks = block.get("data", {}).get("blocks", {}) or block.get("blocks", {})
+        if sub_blocks:
+            getAllSlateBlocks(sub_blocks, slate_blocks)
+    return slate_blocks
 
 
 @implementer(IDescriptionMetadata)
@@ -36,15 +47,12 @@ class Description(object):
             setattr(self.context, name, value)
 
     @property
-    def description_metadata_blocks(self):
+    def description_blocks(self):
         """Description metadata from Volto Blocks"""
         res = ""
         blocks = getattr(self.context, "blocks", None) or {}
         for block in getAllSlateBlocks(blocks, []):
             description = block.get("plaintext", "") or ""
-            truncated_desc = truncate(
-                description, length=70, orphans=7, suffix=".", end="."
-            )
-            if truncated_desc:
-                res += truncated_desc
+            if description:
+                res += description
         return res
