@@ -3,7 +3,7 @@
 
 from zope.publisher.interfaces.browser import IDefaultBrowserLayer
 from zope.interface import provider
-from zope.schema import TextLine
+from zope.schema import Text
 
 from plone.autoform.interfaces import IFormFieldProvider
 from plone.supermodel import model
@@ -31,7 +31,7 @@ class IDescriptionMetadata(model.Schema):
         ],
     )
 
-    description_blocks = TextLine(
+    description_blocks = Text(
         title=_("Description"),
         description=_(
             "This property extracts description as metadata"
